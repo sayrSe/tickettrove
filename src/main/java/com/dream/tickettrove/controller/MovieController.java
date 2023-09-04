@@ -1,4 +1,33 @@
 package com.dream.tickettrove.controller;
 
+import com.dream.tickettrove.service.MovieService;
+import com.dream.tickettrove.service.dto.MovieResponse;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/movies")
 public class MovieController {
+
+    private final MovieService movieService;
+
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
+
+    @GetMapping
+    public List<MovieResponse> getAll() {
+        return movieService.findAll();
+    }
+
+    @GetMapping(params = "showing")
+    public List<MovieResponse> getAllNowShowing(@RequestParam Boolean showing) {
+        return movieService.findAllNowShowing();
+    }
+
+    @GetMapping("/{id}")
+    public MovieResponse getMovieById(@PathVariable Integer id) {
+        return movieService.findById(id);
+    }
 }
