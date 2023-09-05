@@ -17,12 +17,7 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<MovieResponse> getAll() {
-        return movieService.findAll();
-    }
-
-    @GetMapping(params = "showing")
-    public List<MovieResponse> getAllNowShowing(@RequestParam Boolean showing) {
+    public List<MovieResponse> getAllNowShowing() {
         return movieService.findAllNowShowing();
     }
 
