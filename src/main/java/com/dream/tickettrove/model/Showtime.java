@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 public class Showtime {
@@ -13,9 +15,8 @@ public class Showtime {
     private Integer id;
     private Integer movieId;
     private Integer roomId;
-    private String startTime;
-    private String endTime;
-    private Boolean isShowing;
+    private Date startTime;
+    private Date endTime;
 
     public Integer getId() {
         return id;
@@ -41,27 +42,19 @@ public class Showtime {
         this.roomId = roomId;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
-    }
-
-    public Boolean isShowing() {
-        return isShowing;
-    }
-
-    public void setShowing(Boolean showing) {
-        isShowing = showing;
     }
 }

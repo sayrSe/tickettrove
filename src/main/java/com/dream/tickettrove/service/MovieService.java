@@ -9,6 +9,7 @@ import com.dream.tickettrove.service.dto.MovieResponse;
 import com.dream.tickettrove.service.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,21 +24,21 @@ public class MovieService {
         this.showtimeRepository = showtimeRepository;
     }
 
-    public List<MovieResponse> findAll() {
-        return movieRepository.findAll().stream()
-                .map(MovieMapper::toResponse)
-                .collect(Collectors.toList());
-    }
-
     public List<MovieResponse> findAllNowShowing() {
         List<Integer> nowShowingMovies = showtimeRepository.findAll().stream()
-                .filter(Showtime::isShowing)
+                .filter(this::isMovieShowingNow)
                 .map(Showtime::getMovieId)
+                .distinct()
                 .collect(Collectors.toList());
         return movieRepository.findAll().stream()
                 .filter(movie -> nowShowingMovies.contains(movie.getId()))
                 .map(MovieMapper::toResponse)
                 .collect(Collectors.toList());
+    }
+
+    private boolean isMovieShowingNow(Showtime showtime) {
+        Date currentDate = new Date();
+        return showtime.getStartTime().after(currentDate) && showtime.getEndTime().after(currentDate);
     }
 
     public MovieResponse findById(Integer id) {
