@@ -36,13 +36,19 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
-    private boolean isMovieShowingNow(Showtime showtime) {
-        Date currentDate = new Date();
-        return showtime.getStartTime().after(currentDate) && showtime.getEndTime().after(currentDate);
-    }
-
     public MovieResponse findById(Integer id) {
         Movie movie = movieRepository.findById(id).orElseThrow(MovieNotFoundException::new);
         return MovieMapper.toResponse(movie);
+    }
+
+    public List<Showtime> findShowtimesByMovieId(Integer id) {
+        return showtimeRepository.findShowtimesByMovieId(id).stream()
+                .filter(this::isMovieShowingNow)
+                .collect(Collectors.toList());
+    }
+
+    private boolean isMovieShowingNow(Showtime showtime) {
+        Date currentDate = new Date();
+        return showtime.getStartTime().after(currentDate) && showtime.getEndTime().after(currentDate);
     }
 }

@@ -13,7 +13,7 @@ public class Showtime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer movieId;
-    private Integer roomId;
+    private Integer hallId;
     private Date startTime;
     private Date endTime;
 
@@ -33,12 +33,12 @@ public class Showtime {
         this.movieId = movieId;
     }
 
-    public Integer getRoomId() {
-        return roomId;
+    public Integer getHallId() {
+        return hallId;
     }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setHallId(Integer hallId) {
+        this.hallId = hallId;
     }
 
     public Date getStartTime() {
