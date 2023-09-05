@@ -31,6 +31,7 @@ public class MovieApiTest {
     @BeforeEach
     void setUp() {
         movieRepository.deleteAll();
+        showtimeRepository.deleteAll();
     }
 
     @Test
