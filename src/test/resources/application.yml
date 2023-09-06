@@ -1,12 +1,14 @@
 spring:
   datasource:
+    url: jdbc:h2:mem:ticket_trove_db;
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        format_sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+  h2:
+    console:
+      enabled: true
+  flyway:
+    enabled: false
