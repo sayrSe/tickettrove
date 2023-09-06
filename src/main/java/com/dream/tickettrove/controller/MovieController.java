@@ -31,4 +31,9 @@ public class MovieController {
     public List<Showtime> getShowtimesByMovieId(@PathVariable Integer id) {
         return movieService.findShowtimesByMovieId(id);
     }
+
+    @GetMapping("/showtime/{id}")
+    public List<Showtime> getDateById(@PathVariable Integer id) {
+        return movieService.findDate(id);
+    }
 }
