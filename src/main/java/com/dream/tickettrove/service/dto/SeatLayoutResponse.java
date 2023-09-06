@@ -6,11 +6,15 @@ import java.util.List;
 
 public class SeatLayoutResponse {
     private Integer showtimeId;
-    private Integer capacity;
     private Integer maxRow;
     private List<Seat> seats;
 
     public SeatLayoutResponse() {
+    }
+    public SeatLayoutResponse(Integer showtimeId, Integer maxRow, List<Seat> seats) {
+        this.showtimeId = showtimeId;
+        this.maxRow = maxRow;
+        this.seats = seats;
     }
 
     public Integer getShowtimeId() {
@@ -19,14 +23,6 @@ public class SeatLayoutResponse {
 
     public void setShowtimeId(Integer showtimeId) {
         this.showtimeId = showtimeId;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
     }
 
     public Integer getMaxRow() {
