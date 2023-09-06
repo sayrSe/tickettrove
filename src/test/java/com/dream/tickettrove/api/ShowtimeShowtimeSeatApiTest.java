@@ -1,8 +1,8 @@
 package com.dream.tickettrove.api;
 
-import com.dream.tickettrove.model.Seat;
-import com.dream.tickettrove.repository.SeatRepository;
-import com.dream.tickettrove.service.dto.SeatLayoutResponse;
+import com.dream.tickettrove.model.ShowtimeSeat;
+import com.dream.tickettrove.repository.ShowtimeSeatRepository;
+import com.dream.tickettrove.service.dto.ShowtimeSeatLayoutResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +18,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SeatApiTest {
+public class ShowtimeShowtimeSeatApiTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
-    private SeatRepository seatRepository;
+    private ShowtimeSeatRepository showtimeSeatRepository;
     @BeforeEach
     void setUp() {
-        seatRepository.deleteAll();
+        showtimeSeatRepository.deleteAll();
     }
 
     @Test
     void should_return_seatLayoutResponse_when_get_given_showtimeId() throws Exception {
-        List<Seat> seats = List.of(seatRepository.save(new Seat(1, 10, 1, Boolean.FALSE)));
-        SeatLayoutResponse seatLayoutResponse = new SeatLayoutResponse(1, 10, seats);
+        List<ShowtimeSeat> showtimeSeats = List.of(showtimeSeatRepository.save(new ShowtimeSeat(1, 10, 1, Boolean.FALSE)));
+        ShowtimeSeatLayoutResponse showtimeSeatLayoutResponse = new ShowtimeSeatLayoutResponse(1, 10, showtimeSeats);
 
         mockMvc.perform(get("/seats/1"))
                 .andExpect(status().isOk())

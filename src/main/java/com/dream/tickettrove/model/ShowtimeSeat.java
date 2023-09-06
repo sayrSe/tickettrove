@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Seat {
+public class ShowtimeSeat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +16,11 @@ public class Seat {
     private Integer seatNum;
     private Boolean isReserved;
 
-    public Seat(){
+    public ShowtimeSeat(){
 
     }
 
-    public Seat(Integer showtimeId, Integer rowNum, Integer seatNum, Boolean isReserved){
+    public ShowtimeSeat(Integer showtimeId, Integer rowNum, Integer seatNum, Boolean isReserved){
         this.showtimeId = showtimeId;
         this.rowNum = rowNum;
         this.seatNum = seatNum;

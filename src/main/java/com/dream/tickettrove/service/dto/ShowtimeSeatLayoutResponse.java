@@ -1,20 +1,20 @@
 package com.dream.tickettrove.service.dto;
 
-import com.dream.tickettrove.model.Seat;
+import com.dream.tickettrove.model.ShowtimeSeat;
 
 import java.util.List;
 
-public class SeatLayoutResponse {
+public class ShowtimeSeatLayoutResponse {
     private Integer showtimeId;
     private Integer maxRow;
-    private List<Seat> seats;
+    private List<ShowtimeSeat> showtimeSeats;
 
-    public SeatLayoutResponse() {
+    public ShowtimeSeatLayoutResponse() {
     }
-    public SeatLayoutResponse(Integer showtimeId, Integer maxRow, List<Seat> seats) {
+    public ShowtimeSeatLayoutResponse(Integer showtimeId, Integer maxRow, List<ShowtimeSeat> showtimeSeats) {
         this.showtimeId = showtimeId;
         this.maxRow = maxRow;
-        this.seats = seats;
+        this.showtimeSeats = showtimeSeats;
     }
 
     public Integer getShowtimeId() {
@@ -33,11 +33,11 @@ public class SeatLayoutResponse {
         this.maxRow = maxRow;
     }
 
-    public List<Seat> getSeats() {
-        return seats;
+    public List<ShowtimeSeat> getSeats() {
+        return showtimeSeats;
     }
 
-    public void setSeats(List<Seat> seats) {
-        this.seats = seats;
+    public void setSeats(List<ShowtimeSeat> showtimeSeats) {
+        this.showtimeSeats = showtimeSeats;
     }
 }
