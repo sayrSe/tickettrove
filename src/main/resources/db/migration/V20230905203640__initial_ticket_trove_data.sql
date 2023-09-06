@@ -15,15 +15,21 @@ VALUES
     ('Blade Runner 2049', 'https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_FMjpg_UX1000_.jpg', 'Thirty years after the events of Blade Runner (1982), a new Blade Runner, L.A.P.D. Officer K (Ryan Gosling), unearths a long-buried secret that has the potential to plunge what\'s left of society into chaos.', ' K\'s discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard.', '2023-09-05', 164, 'Rated R', 'Denis Villeneuve', 'Harrison Ford, Ryan Gosling, Ana de Armas');
 
 -- Insert data into the `cinema` table
-INSERT INTO `cinema` (`name`, `hall_number`, `address`) VALUES
-('Ayala Malls Manila Bay', 1, '123 Main Street'),
-('Ayala Malls Manila Bay', 2, '123 Main Street'),
-('Mall of Asia Cinema', 1, 'Pasay City'),
-('Mall of Asia Cinema', 2, 'Pasay City'),
-('Cinema 3', 1, 'Makati City');
+INSERT INTO `cinema` (`name`, `address`) VALUES
+('Ayala Malls Manila Bay', '123 Main Street'),
+('Mall of Asia Cinema', 'Pasay City'),
+('Cinema 3', 'Makati City');
+
+-- Insert data into the `hall` table
+INSERT INTO `hall` (`cinema_id`, `hall_number`, `max_row`, `max_col`) VALUES
+(1, 1, 10, 10),
+(1, 2, 10, 10),
+(2, 1, 10, 10),
+(2, 2, 10, 10),
+(3, 1, 10, 10);
 
 -- Insert data into the `seat` table
-INSERT INTO `seat` (`cinema_id`, `row_num`, `seat_num`, `is_reserved`) VALUES
+INSERT INTO `seat` (`hall_id`, `grid_row`, `grid_col`, `is_available`) VALUES
 (1, 1, 1, 0),
 (1, 1, 2, 0),
 (1, 1, 3, 0),
@@ -46,26 +52,26 @@ INSERT INTO `seat` (`cinema_id`, `row_num`, `seat_num`, `is_reserved`) VALUES
 (5, 1, 2, 0),
 (5, 1, 3, 0);
 
-INSERT INTO `showtime` (`movie_id`, `cinema_id`, `start_time`, `end_time`)
+INSERT INTO `showtime` (`movie_id`, `hall_id`, `start_time`, `end_time`)
 VALUES
     (1, 1, '2023-09-18 10:00:00', '2023-09-18 11:30:00'),
     (1, 1, '2023-09-19 13:00:00', '2023-09-19 14:30:00'),
     (1, 1, '2023-09-20 16:00:00', '2023-09-20 17:30:00');
 
 
-INSERT INTO `showtime` (`movie_id`, `cinema_id`, `start_time`, `end_time`)
+INSERT INTO `showtime` (`movie_id`, `hall_id`, `start_time`, `end_time`)
 VALUES
     (2, 2, '2023-09-18 10:00:00', '2023-09-18 11:30:00'),
     (2, 2, '2023-09-19 13:00:00', '2023-09-19 14:30:00'),
     (2, 2, '2023-09-20 16:00:00', '2023-09-20 17:30:00');
 
-INSERT INTO `showtime` (`movie_id`, `cinema_id`, `start_time`, `end_time`)
+INSERT INTO `showtime` (`movie_id`, `hall_id`, `start_time`, `end_time`)
 VALUES
     (4, 4, '2023-09-18 10:00:00', '2023-09-18 11:30:00'),
     (4, 4, '2023-09-19 13:00:00', '2023-09-19 14:30:00'),
     (4, 4, '2023-09-20 16:00:00', '2023-09-20 17:30:00');
 
-INSERT INTO `showtime` (`movie_id`, `cinema_id`, `start_time`, `end_time`)
+INSERT INTO `showtime` (`movie_id`, `hall_id`, `start_time`, `end_time`)
 VALUES
     (13, 3, '2023-09-18 10:00:00', '2023-09-18 11:30:00'),
     (13, 3, '2023-09-19 13:00:00', '2023-09-19 14:30:00'),
