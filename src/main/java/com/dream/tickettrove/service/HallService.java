@@ -54,6 +54,7 @@ public class HallService {
         for (Seat seat : seats) {
             if (seat.getAvailable()) {
                 seatResponses.add(SeatMapper.toResponse(seat, showtimeSeats.get(showtimeSeatIndex++)));
+                if(showtimeSeatIndex == showtimeSeats.size()) break;
             }else{
                 seatResponses.add(SeatMapper.toResponse(seat));
             }
