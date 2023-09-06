@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ShowtimeRepository extends JpaRepository<Showtime, Integer> {
     List<Showtime> findShowtimesByMovieId(Integer id);
+    List<Showtime> findByMovieId(Integer id);
 }
