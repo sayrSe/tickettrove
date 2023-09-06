@@ -13,16 +13,16 @@ public class Hall {
     private Integer cinemaId;
     private Integer hallNumber;
     private Integer maxRow;
-    private Integer maxColumn;
+    private Integer maxCol;
 
     public Hall(){
     }
 
-    public Hall(Integer cinemaId, Integer hallNumber, Integer maxRow, Integer maxColumn){
+    public Hall(Integer cinemaId, Integer hallNumber, Integer maxRow, Integer maxCol){
         this.cinemaId = cinemaId;
         this.hallNumber = hallNumber;
         this.maxRow = maxRow;
-        this.maxColumn = maxColumn;
+        this.maxCol = maxCol;
     }
 
     public Integer getId() {
@@ -57,11 +57,11 @@ public class Hall {
         this.maxRow = maxRow;
     }
 
-    public Integer getMaxColumn() {
-        return maxColumn;
+    public Integer getMaxCol() {
+        return maxCol;
     }
 
-    public void setMaxColumn(Integer maxColumn) {
-        this.maxColumn = maxColumn;
+    public void setMaxCol(Integer maxCol) {
+        this.maxCol = maxCol;
     }
 }

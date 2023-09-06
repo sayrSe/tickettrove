@@ -61,7 +61,7 @@ public class HallApiTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.hallNumber").value(10))
                 .andExpect(jsonPath("$.maxRow").value(2))
-                .andExpect(jsonPath("$.maxColumn").value(3))
+                .andExpect(jsonPath("$.maxCol").value(3))
                 .andExpect(jsonPath("$.seats.length()").value(5))
                 .andExpect(jsonPath("$.seats[0].gridRow").value(1))
                 .andExpect(jsonPath("$.seats[0].gridCol").value(1))

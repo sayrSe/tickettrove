@@ -5,7 +5,7 @@ import java.util.List;
 public class HallResponse {
     private Integer hallNumber;
     private Integer maxRow;
-    private Integer maxColumn;
+    private Integer maxCol;
     private List<SeatResponse> seats;
 
     public Integer getHallNumber() {
@@ -24,12 +24,12 @@ public class HallResponse {
         this.maxRow = maxRow;
     }
 
-    public Integer getMaxColumn() {
-        return maxColumn;
+    public Integer getMaxCol() {
+        return maxCol;
     }
 
-    public void setMaxColumn(Integer maxColumn) {
-        this.maxColumn = maxColumn;
+    public void setMaxCol(Integer maxCol) {
+        this.maxCol = maxCol;
     }
 
     public List<SeatResponse> getSeats() {
