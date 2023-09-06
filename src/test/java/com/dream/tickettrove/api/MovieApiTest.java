@@ -91,7 +91,7 @@ public class MovieApiTest {
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].id").value(nowShowtime.getId()))
                 .andExpect(jsonPath("$[0].movieId").value(nowShowtime.getMovieId()))
-                .andExpect(jsonPath("$[0].cinemaId").value(nowShowtime.getCinemaId()))
+                .andExpect(jsonPath("$[0].cinemaId").value(nowShowtime.getHallId()))
                 .andExpect(jsonPath("$[0].startTime").value(iso8601Format.format(nowShowtime.getStartTime()) + "+00:00"))
                 .andExpect(jsonPath("$[0].endTime").value(iso8601Format.format(nowShowtime.getEndTime()) + "+00:00"))
                 .andExpect(jsonPath("$[0].showtimes").doesNotExist());
@@ -100,7 +100,7 @@ public class MovieApiTest {
     private Showtime buildNowShowtime(Movie movie) throws ParseException {
         Showtime showtime = new Showtime();
         showtime.setMovieId(movie.getId());
-        showtime.setCinemaId(1);
+        showtime.setHallId(1);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         showtime.setStartTime(dateFormat.parse("2023-12-12 15:00:00"));
         showtime.setEndTime(dateFormat.parse("2023-12-12 17:00:00"));
@@ -110,7 +110,7 @@ public class MovieApiTest {
     private Showtime buildPastShowtime(Movie movie) throws ParseException {
         Showtime showtime = new Showtime();
         showtime.setMovieId(movie.getId());
-        showtime.setCinemaId(1);
+        showtime.setHallId(1);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         showtime.setStartTime(dateFormat.parse("1999-09-10 15:00:00"));
         showtime.setEndTime(dateFormat.parse("1999-09-10 17:00:00"));
