@@ -5,12 +5,22 @@ import com.dream.tickettrove.model.ShowtimeSeat;
 import java.util.List;
 
 public class SeatResponse {
+
+    private Integer id;
     private Integer gridRow;
     private Integer gridCol;
     private Integer rowNum;
     private Integer seatNum;
     private Boolean isReserved;
     private Boolean isAvailable;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getGridRow() {
         return gridRow;
@@ -59,4 +69,5 @@ public class SeatResponse {
     public void setAvailable(Boolean available) {
         isAvailable = available;
     }
+
 }

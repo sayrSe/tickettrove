@@ -53,7 +53,7 @@ public class HallApiTest {
         seatRepository.save(new Seat(1, 2, 1, Boolean.FALSE));
         seatRepository.save(new Seat(1, 2, 2, Boolean.TRUE));
 
-        showtimeSeatRepository.save(new ShowtimeSeat(1, 1, 1, Boolean.TRUE));
+        ShowtimeSeat first = showtimeSeatRepository.save(new ShowtimeSeat(1, 1, 1, Boolean.TRUE));
         showtimeSeatRepository.save(new ShowtimeSeat(1, 1, 2, Boolean.FALSE));
         showtimeSeatRepository.save(new ShowtimeSeat(1,2,1, Boolean.TRUE));
 
@@ -63,6 +63,7 @@ public class HallApiTest {
                 .andExpect(jsonPath("$.maxRow").value(2))
                 .andExpect(jsonPath("$.maxCol").value(3))
                 .andExpect(jsonPath("$.seats.length()").value(5))
+                .andExpect(jsonPath("$.seats[0].id").value(first.getId()))
                 .andExpect(jsonPath("$.seats[0].gridRow").value(1))
                 .andExpect(jsonPath("$.seats[0].gridCol").value(1))
                 .andExpect(jsonPath("$.seats[0].rowNum").value(1))
