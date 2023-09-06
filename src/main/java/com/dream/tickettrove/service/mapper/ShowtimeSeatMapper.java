@@ -1,18 +1,18 @@
 package com.dream.tickettrove.service.mapper;
 
 import com.dream.tickettrove.model.ShowtimeSeat;
-import com.dream.tickettrove.service.dto.ShowtimeSeatLayoutResponse;
+import com.dream.tickettrove.service.dto.ShowtimeSeatResponse;
 
 import java.util.List;
 
 public class ShowtimeSeatMapper {
-    public static ShowtimeSeatLayoutResponse toResponse(Integer showtimeId, List<ShowtimeSeat> showtimeSeats, int maxRow) {
-        ShowtimeSeatLayoutResponse showtimeSeatLayoutResponse = new ShowtimeSeatLayoutResponse();
+    public static ShowtimeSeatResponse toResponse(Integer showtimeId, List<ShowtimeSeat> showtimeSeats, int maxRow) {
+        ShowtimeSeatResponse showtimeSeatResponse = new ShowtimeSeatResponse();
 
-        showtimeSeatLayoutResponse.setShowtimeId(showtimeId);
-        showtimeSeatLayoutResponse.setMaxRow(maxRow);
-        showtimeSeatLayoutResponse.setSeats(showtimeSeats);
+        showtimeSeatResponse.setShowtimeId(showtimeId);
+        showtimeSeatResponse.setMaxRow(maxRow);
+        showtimeSeatResponse.setSeats(showtimeSeats);
 
-        return showtimeSeatLayoutResponse;
+        return showtimeSeatResponse;
     }
 }

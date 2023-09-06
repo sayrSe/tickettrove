@@ -3,7 +3,7 @@ package com.dream.tickettrove.service;
 import com.dream.tickettrove.exception.SeatsNotFoundException;
 import com.dream.tickettrove.model.ShowtimeSeat;
 import com.dream.tickettrove.repository.ShowtimeSeatRepository;
-import com.dream.tickettrove.service.dto.ShowtimeSeatLayoutResponse;
+import com.dream.tickettrove.service.dto.ShowtimeSeatResponse;
 import com.dream.tickettrove.service.mapper.ShowtimeSeatMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class ShowtimeSeatService {
         this.showtimeSeatRepository = showtimeSeatRepository;
     }
 
-    public ShowtimeSeatLayoutResponse getSeatLayout(Integer showtimeId) {
+    public ShowtimeSeatResponse getSeatLayout(Integer showtimeId) {
         List<ShowtimeSeat> showtimeSeats = showtimeSeatRepository.findByShowtimeId(showtimeId);
         if(showtimeSeats == null) throw new SeatsNotFoundException();
 

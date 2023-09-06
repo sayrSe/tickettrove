@@ -1,7 +1,7 @@
 package com.dream.tickettrove.controller;
 
 import com.dream.tickettrove.service.ShowtimeSeatService;
-import com.dream.tickettrove.service.dto.ShowtimeSeatLayoutResponse;
+import com.dream.tickettrove.service.dto.ShowtimeSeatResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ public class ShowtimeSeatController {
     }
 
     @GetMapping("/{showtimeId}")
-    public ShowtimeSeatLayoutResponse getSeatLayout(@PathVariable Integer showtimeId){
+    public ShowtimeSeatResponse getSeatLayout(@PathVariable Integer showtimeId){
         return showtimeSeatService.getSeatLayout(showtimeId);
     }
 }

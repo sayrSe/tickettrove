@@ -4,14 +4,14 @@ import com.dream.tickettrove.model.ShowtimeSeat;
 
 import java.util.List;
 
-public class ShowtimeSeatLayoutResponse {
+public class ShowtimeSeatResponse {
     private Integer showtimeId;
     private Integer maxRow;
     private List<ShowtimeSeat> showtimeSeats;
 
-    public ShowtimeSeatLayoutResponse() {
+    public ShowtimeSeatResponse() {
     }
-    public ShowtimeSeatLayoutResponse(Integer showtimeId, Integer maxRow, List<ShowtimeSeat> showtimeSeats) {
+    public ShowtimeSeatResponse(Integer showtimeId, Integer maxRow, List<ShowtimeSeat> showtimeSeats) {
         this.showtimeId = showtimeId;
         this.maxRow = maxRow;
         this.showtimeSeats = showtimeSeats;
