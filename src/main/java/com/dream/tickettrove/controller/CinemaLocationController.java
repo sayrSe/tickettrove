@@ -1,6 +1,6 @@
 package com.dream.tickettrove.controller;
 
-import com.dream.tickettrove.model.CinemaLocation;
+import com.dream.tickettrove.model.Cinema;
 import com.dream.tickettrove.service.CinemaService;
 import com.dream.tickettrove.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +21,12 @@ public class CinemaLocationController {
     private MovieService movieService;
 
     @GetMapping
-    public List<CinemaLocation> getAllCinemas() {
+    public List<Cinema> getAllCinemas() {
         return cinemaService.getAllCinemas();
     }
 
     @GetMapping("/{id}")
-    public CinemaLocation getCinemaById(@PathVariable Long id) {
+    public Cinema getCinemaById(@PathVariable Long id) {
         return cinemaService.getCinemaById(id);
     }
 }
