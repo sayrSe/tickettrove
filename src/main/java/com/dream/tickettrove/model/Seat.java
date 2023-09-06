@@ -16,6 +16,17 @@ public class Seat {
     private Integer seatNum;
     private Boolean isReserved;
 
+    public Seat(){
+
+    }
+
+    public Seat(Integer showtimeId, Integer rowNum, Integer seatNum, Boolean isReserved){
+        this.showtimeId = showtimeId;
+        this.rowNum = rowNum;
+        this.seatNum = seatNum;
+        this.isReserved = isReserved;
+    }
+
     public Integer getId() {
         return id;
     }
