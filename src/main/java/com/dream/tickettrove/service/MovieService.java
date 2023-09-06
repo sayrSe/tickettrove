@@ -51,4 +51,8 @@ public class MovieService {
         Date currentDate = new Date();
         return showtime.getStartTime().after(currentDate) && showtime.getEndTime().after(currentDate);
     }
+
+    public List<Showtime> findDate(Integer id) {
+        return showtimeRepository.findByMovieId(id);
+    }
 }
