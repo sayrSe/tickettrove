@@ -91,7 +91,7 @@ public class MovieApiTest {
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].id").value(nowShowtime.getId()))
                 .andExpect(jsonPath("$[0].movieId").value(nowShowtime.getMovieId()))
-                .andExpect(jsonPath("$[0].hallId").value(nowShowtime.getCinemaId()))
+                .andExpect(jsonPath("$[0].cinemaId").value(nowShowtime.getCinemaId()))
                 .andExpect(jsonPath("$[0].startTime").value(iso8601Format.format(nowShowtime.getStartTime()) + "+00:00"))
                 .andExpect(jsonPath("$[0].endTime").value(iso8601Format.format(nowShowtime.getEndTime()) + "+00:00"))
                 .andExpect(jsonPath("$[0].showtimes").doesNotExist());
