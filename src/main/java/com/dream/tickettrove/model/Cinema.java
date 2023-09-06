@@ -6,12 +6,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class CinemaLocation {
+public class Cinema {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String address;
+
+    public Cinema() {
+
+    }
+
+    public Cinema(Long id, String name, String address){
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
+    public Cinema(Long id, String address){
+        this.id = id;
+        this.address = address;
+    }
 
     public Long getId() {
         return id;
