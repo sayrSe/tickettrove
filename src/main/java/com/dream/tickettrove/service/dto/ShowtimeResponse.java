@@ -1,6 +1,7 @@
 package com.dream.tickettrove.service.dto;
 
 import com.dream.tickettrove.model.Cinema;
+import com.dream.tickettrove.model.Hall;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ public class ShowtimeResponse {
     private Date startTime;
     private Date endTime;
     private Cinema cinema;
+    private Hall hall;
 
     public Integer getId() {
         return id;
@@ -59,5 +61,13 @@ public class ShowtimeResponse {
 
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
+    }
+
+    public Hall getHall() {
+        return hall;
+    }
+
+    public void setHall(Hall hall) {
+        this.hall = hall;
     }
 }

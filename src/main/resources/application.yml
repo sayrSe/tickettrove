@@ -9,6 +9,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        jdbc:
+          time_zone: UTC
     show-sql: false
   flyway:
     baseline-on-migrate: true
