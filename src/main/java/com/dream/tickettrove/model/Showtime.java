@@ -14,6 +14,7 @@ public class Showtime {
     private Integer id;
     private Integer movieId;
     private Integer hallId;
+    private Long cinemaId;
     private Date startTime;
     private Date endTime;
 
@@ -39,6 +40,14 @@ public class Showtime {
 
     public void setHallId(Integer hallId) {
         this.hallId = hallId;
+    }
+
+    public Long getCinemaId() {
+        return cinemaId;
+    }
+
+    public void setCinemaId(Long cinemaId) {
+        this.cinemaId = cinemaId;
     }
 
     public Date getStartTime() {

@@ -9,6 +9,8 @@ import com.dream.tickettrove.service.dto.MovieResponse;
 import com.dream.tickettrove.service.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,12 +43,6 @@ public class MovieService {
         return MovieMapper.toResponse(movie);
     }
 
-    public List<Showtime> findShowtimesByMovieId(Integer id) {
-        return showtimeRepository.findShowtimesByMovieId(id).stream()
-                .filter(this::isMovieShowingNow)
-                .collect(Collectors.toList());
-    }
-
     private boolean isMovieShowingNow(Showtime showtime) {
         Date currentDate = new Date();
         return showtime.getStartTime().after(currentDate) && showtime.getEndTime().after(currentDate);
@@ -54,5 +50,19 @@ public class MovieService {
 
     public List<Showtime> findDate(Integer id) {
         return showtimeRepository.findByMovieId(id);
+    }
+
+    public List<Showtime> getShowtimesByMovieCinemaDate(Integer id, Long cinemaId, String date) {
+        return showtimeRepository.findByMovieId(id).stream()
+                .filter(showtime -> cinemaId.equals(showtime.getCinemaId()))
+                .sorted(Comparator.comparing(Showtime::getStartTime))
+                .filter(showtime -> isShowtimeChosenDate(showtime.getStartTime(), date))
+                .filter(this::isMovieShowingNow)
+                .collect(Collectors.toList());
+    }
+
+    private boolean isShowtimeChosenDate(Date startTime, String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(startTime).equals(date);
     }
 }
