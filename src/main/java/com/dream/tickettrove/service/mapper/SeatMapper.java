@@ -10,8 +10,8 @@ import java.util.List;
 public class SeatMapper {
     public static SeatResponse toResponse(Seat seat, ShowtimeSeat showtimeSeat) {
         SeatResponse seatResponse = new SeatResponse();
-        BeanUtils.copyProperties(seat, seatResponse);
         BeanUtils.copyProperties(showtimeSeat, seatResponse);
+        BeanUtils.copyProperties(seat, seatResponse);
         return seatResponse;
     }
 
