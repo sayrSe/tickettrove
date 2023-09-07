@@ -1,10 +1,13 @@
 package com.dream.tickettrove.service;
 
+import com.dream.tickettrove.exception.HallNotFoundException;
 import com.dream.tickettrove.exception.MovieNotFoundException;
 import com.dream.tickettrove.model.Cinema;
+import com.dream.tickettrove.model.Hall;
 import com.dream.tickettrove.model.Movie;
 import com.dream.tickettrove.model.Showtime;
 import com.dream.tickettrove.repository.CinemaLocationRepository;
+import com.dream.tickettrove.repository.HallRepository;
 import com.dream.tickettrove.repository.MovieRepository;
 import com.dream.tickettrove.repository.ShowtimeRepository;
 import com.dream.tickettrove.service.dto.MovieResponse;
@@ -25,11 +28,13 @@ public class MovieService {
     private final MovieRepository movieRepository;
     private final ShowtimeRepository showtimeRepository;
     private final CinemaLocationRepository cinemaLocationRepository;
+    private final HallRepository hallRepository;
 
-    public MovieService(MovieRepository movieRepository, ShowtimeRepository showtimeRepository, CinemaLocationRepository cinemaLocationRepository) {
+    public MovieService(MovieRepository movieRepository, ShowtimeRepository showtimeRepository, CinemaLocationRepository cinemaLocationRepository, HallRepository hallRepository) {
         this.movieRepository = movieRepository;
         this.showtimeRepository = showtimeRepository;
         this.cinemaLocationRepository = cinemaLocationRepository;
+        this.hallRepository = hallRepository;
     }
 
     public List<MovieResponse> findAllNowShowing() {
@@ -64,13 +69,18 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
-    public List<Showtime> getShowtimesByMovieCinemaDate(Integer id, Long cinemaId, String date) {
+    public List<ShowtimeResponse> getShowtimesByMovieCinemaDate(Integer id, Long cinemaId, String date) {
         return showtimeRepository.findByMovieId(id).stream()
                 .filter(showtime -> cinemaId.equals(showtime.getCinemaId()))
                 .sorted(Comparator.comparing(Showtime::getStartTime))
                 .filter(showtime -> isShowtimeChosenDate(showtime.getStartTime(), date))
                 .filter(this::isMovieShowingNow)
+                .map(showtime -> ShowtimeMapper.toResponse(showtime, getHall(showtime.getHallId())))
                 .collect(Collectors.toList());
+    }
+
+    private Hall getHall(Integer hallId) {
+        return hallRepository.findById(hallId).orElseThrow(HallNotFoundException::new);
     }
 
     private boolean isShowtimeChosenDate(Date startTime, String date) {
