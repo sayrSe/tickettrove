@@ -2,9 +2,12 @@ package com.dream.tickettrove.service;
 
 import com.dream.tickettrove.repository.OtpRepository;
 import com.dream.tickettrove.model.Otp;
+import com.dream.tickettrove.service.dto.OtpVerifyResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class OtpService {
@@ -21,5 +24,22 @@ public class OtpService {
         Otp otp = new Otp(phoneNumber, code);
 
         otpRepository.save(otp);
+    }
+
+    public OtpVerifyResponse verifyCode(String phoneNumber, String code) {
+        OtpVerifyResponse otpVerifyResponse = new OtpVerifyResponse();
+        List<Otp> otps = otpRepository.findByPhoneNumber(phoneNumber);
+        if(otps.size() > 0){
+            List<Otp> filteredOtp = otps.stream()
+                    .filter(otp -> otp.getCode().equals(code))
+                    .collect(Collectors.toList());
+            if(filteredOtp.size() != 0){
+                otpVerifyResponse.setMatched(Boolean.TRUE);
+                return otpVerifyResponse;
+            }
+        }
+
+        otpVerifyResponse.setMatched(Boolean.FALSE);
+        return otpVerifyResponse;
     }
 }

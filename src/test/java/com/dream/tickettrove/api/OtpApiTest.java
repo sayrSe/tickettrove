@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,5 +45,32 @@ public class OtpApiTest {
         assertEquals(phoneNumber, otps.get(0).getPhoneNumber());
         assertNotNull(otps.get(0).getCode());
         assertEquals(6, otps.get(0).getCode().length());
+    }
+
+    @Test
+    void should_return_true_otpVerifyResponse_when_get_given_phone_number_and_otp () throws Exception{
+        String phoneNumber = "87291740271";
+        String code = "192841";
+        Otp otp = otpRepository.save(new Otp(phoneNumber, code));
+
+        mockMvc.perform(get("/otp/verify")
+                        .param("phoneNumber", phoneNumber)
+                        .param("code", code))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matched").value(Boolean.TRUE));
+    }
+
+    @Test
+    void should_return_false_otpVerifyResponse_when_get_given_phone_number_and_otp () throws Exception{
+        String phoneNumber = "10384562593";
+        String correctCode = "371024";
+        String wrongCode = "141267";
+        Otp otp = otpRepository.save(new Otp(phoneNumber, correctCode));
+
+        mockMvc.perform(get("/otp/verify")
+                        .param("phoneNumber", phoneNumber)
+                        .param("code", wrongCode))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matched").value(Boolean.FALSE));
     }
 }
