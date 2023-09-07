@@ -39,10 +39,12 @@ CREATE TABLE IF NOT EXISTS `showtime` (
 	`id` INT AUTO_INCREMENT PRIMARY KEY,
 	`movie_id` INT,
 	`hall_id` INT,
+	`cinema_id` INT,
 	`start_time` TIMESTAMP NULL,
 	`end_time` TIMESTAMP NULL,
 	FOREIGN KEY (movie_id) REFERENCES movie (id),
-	FOREIGN KEY (hall_id) REFERENCES hall (id)
+	FOREIGN KEY (hall_id) REFERENCES hall (id),
+	FOREIGN KEY (cinema_id) REFERENCES hall (cinema_id)
 );
 
 CREATE TABLE `booking` (
