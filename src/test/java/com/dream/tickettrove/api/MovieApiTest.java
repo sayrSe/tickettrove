@@ -78,7 +78,7 @@ public class MovieApiTest {
     }
 
     @Test
-    void should_find_showtimes_by_movies() throws Exception {
+    void should_find_showtimes_by_movies_cinemas_date() throws Exception {
         Movie movie = movieRepository.save(buildMovie());
         Showtime nowShowtime = showtimeRepository.save(buildNowShowtime(movie));
         showtimeRepository.save(buildPastShowtime(movie));
@@ -86,7 +86,9 @@ public class MovieApiTest {
         SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         iso8601Format.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-        mockMvc.perform(get("/movies/{id}/showtimes", movie.getId()))
+        mockMvc.perform(get("/movies/{id}/showtimes", movie.getId())
+                        .param("cinemaId", "1")
+                        .param("date", "2023-12-12"))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].id").value(nowShowtime.getId()))
@@ -101,6 +103,7 @@ public class MovieApiTest {
         Showtime showtime = new Showtime();
         showtime.setMovieId(movie.getId());
         showtime.setHallId(1);
+        showtime.setCinemaId(1L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         showtime.setStartTime(dateFormat.parse("2023-12-12 15:00:00"));
         showtime.setEndTime(dateFormat.parse("2023-12-12 17:00:00"));

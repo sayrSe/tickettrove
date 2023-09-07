@@ -1,5 +1,7 @@
 package com.dream.tickettrove.service.dto;
 
+import com.dream.tickettrove.model.Cinema;
+
 public class MovieResponse {
 
     private Integer id;
