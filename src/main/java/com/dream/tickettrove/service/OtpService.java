@@ -2,7 +2,9 @@ package com.dream.tickettrove.service;
 
 import com.dream.tickettrove.repository.OtpRepository;
 import com.dream.tickettrove.model.Otp;
+import com.dream.tickettrove.service.dto.OtpResponse;
 import com.dream.tickettrove.service.dto.OtpVerifyResponse;
+import com.dream.tickettrove.service.mapper.OtpMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +43,12 @@ public class OtpService {
 
         otpVerifyResponse.setMatched(Boolean.FALSE);
         return otpVerifyResponse;
+    }
+
+    public List<OtpResponse> getOtpResponses() {
+        List<Otp> otps = otpRepository.findAll();
+        return otps.stream()
+                .map(OtpMapper::toResponse)
+                .collect(Collectors.toList());
     }
 }
