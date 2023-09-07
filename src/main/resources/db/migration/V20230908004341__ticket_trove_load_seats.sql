@@ -1,9 +1,9 @@
-UPDATE ticket_trove_db.hall
+UPDATE hall
 SET max_row = 12, max_col = 25
 WHERE id = 1;
 
-DELETE FROM ticket_trove_db.seat WHERE hall_id = 1;
-INSERT INTO ticket_trove_db.seat (`hall_id`, `grid_row`, `grid_col`, `is_available`) VALUES
+DELETE FROM seat WHERE hall_id = 1;
+INSERT INTO seat (`hall_id`, `grid_row`, `grid_col`, `is_available`) VALUES
 (1, 1, 1, 0),
 (1, 1, 2, 0),
 (1, 1, 3, 0),
@@ -305,8 +305,8 @@ INSERT INTO ticket_trove_db.seat (`hall_id`, `grid_row`, `grid_col`, `is_availab
 (1, 12, 24, 1),
 (1, 12, 25, 1);
 
-DELETE FROM ticket_trove_db.showtime_seat WHERE showtime_id = 1;
-INSERT INTO ticket_trove_db.showtime_seat (`showtime_id`, `row_num`, `seat_num`, `is_reserved`) VALUES
+DELETE FROM showtime_seat WHERE showtime_id = 1;
+INSERT INTO showtime_seat (`showtime_id`, `row_num`, `seat_num`, `is_reserved`) VALUES
 (1, 1, 1, 0),
 (1, 1, 2, 0),
 (1, 1, 3, 0),
@@ -507,12 +507,12 @@ INSERT INTO ticket_trove_db.showtime_seat (`showtime_id`, `row_num`, `seat_num`,
 (1, 12, 20, 0),
 (1, 12, 21, 0);
 
-UPDATE ticket_trove_db.hall
+UPDATE hall
 SET max_row = 36, max_col = 25
 WHERE id = 2;
 
-DELETE FROM ticket_trove_db.seat WHERE hall_id = 2;
-INSERT INTO ticket_trove_db.seat (`hall_id`, `grid_row`, `grid_col`, `is_available`) VALUES
+DELETE FROM seat WHERE hall_id = 2;
+INSERT INTO seat (`hall_id`, `grid_row`, `grid_col`, `is_available`) VALUES
 (2, 1, 1, 0),
 (2, 1, 2, 0),
 (2, 1, 3, 0),
@@ -1414,16 +1414,16 @@ INSERT INTO ticket_trove_db.seat (`hall_id`, `grid_row`, `grid_col`, `is_availab
 (2, 36, 24, 1),
 (2, 36, 25, 1);
 
-UPDATE ticket_trove_db.showtime
+UPDATE showtime
 SET hall_id = 1
 WHERE id = 1;
 
-UPDATE ticket_trove_db.showtime
+UPDATE showtime
 SET hall_id = 2
 WHERE id = 2;
 
-DELETE FROM ticket_trove_db.showtime_seat WHERE showtime_id = 2;
-INSERT INTO ticket_trove_db.showtime_seat (`showtime_id`, `row_num`, `seat_num`, `is_reserved`) VALUES
+DELETE FROM showtime_seat WHERE showtime_id = 2;
+INSERT INTO showtime_seat (`showtime_id`, `row_num`, `seat_num`, `is_reserved`) VALUES
 (2, 1, 1, 0),
 (2, 1, 2, 0),
 (2, 1, 3, 0),
