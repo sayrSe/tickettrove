@@ -4,6 +4,7 @@ import com.dream.tickettrove.model.BookedSeat;
 import com.dream.tickettrove.model.Booking;
 import com.dream.tickettrove.repository.BookedSeatRepository;
 import com.dream.tickettrove.repository.BookingRepository;
+import com.dream.tickettrove.service.BookingService;
 import com.dream.tickettrove.service.dto.BookingRequest;
 import com.dream.tickettrove.service.dto.BookedSeatRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +20,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -31,9 +34,12 @@ public class BookingApiTest {
     private BookingRepository bookingRepository;
     @Autowired
     private BookedSeatRepository bookedSeatRepository;
+    @Autowired
+    private BookingService bookingService;
     @BeforeEach
     void setup(){
         bookingRepository.deleteAll();
+        bookedSeatRepository.deleteAll();
     }
 
     @Test
@@ -65,7 +71,22 @@ public class BookingApiTest {
     }
 
     @Test
-    void should_return_bookingResponse_when_get_given_referenceNumber(){
+    void should_return_bookingResponse_when_get_given_referenceNumber() throws Exception {
+        Integer showtimeId = 1;
+        String phoneNumber = "28104729281";
+        List<BookedSeatRequest> bookedSeatRequests = List.of(new BookedSeatRequest(1, 1), new BookedSeatRequest(1, 2), new BookedSeatRequest(1, 3));
+        BookingRequest bookingRequest = new BookingRequest(showtimeId, phoneNumber, bookedSeatRequests);
 
+        bookingService.createBooking(bookingRequest);
+        List<Booking> bookings = bookingRepository.findAll();
+        List<BookedSeat> bookedSeats = bookedSeatRepository.findAll();
+        String referenceNumber = bookings.get(0).getReferenceNumber();
+
+        mockMvc.perform(get("/booking/"+ referenceNumber))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.referenceNumber").value(referenceNumber))
+                .andExpect(jsonPath("$.showtimeId").exists())
+                .andExpect(jsonPath("$.phoneNumber").exists())
+                .andExpect(jsonPath("$.bookedSeats").exists());
     }
 }
