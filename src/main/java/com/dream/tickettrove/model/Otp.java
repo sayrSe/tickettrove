@@ -14,6 +14,7 @@ public class Otp {
     private String code;
 
     public Otp(){
+        // Empty Constructor
     }
 
     public Otp(String phoneNumber, String code){

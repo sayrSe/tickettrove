@@ -17,7 +17,7 @@ public class ShowtimeSeat {
     private Boolean isReserved;
 
     public ShowtimeSeat(){
-
+        // Empty Constructor
     }
 
     public ShowtimeSeat(Integer showtimeId, Integer rowNum, Integer seatNum, Boolean isReserved){

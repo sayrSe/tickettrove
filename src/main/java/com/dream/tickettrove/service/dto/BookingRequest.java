@@ -1,6 +1,5 @@
 package com.dream.tickettrove.service.dto;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public class BookingRequest {
@@ -8,10 +7,10 @@ public class BookingRequest {
     private String customerPhone;
     private List<BookedSeatRequest> bookedSeats;
 
-    public BookingRequest(){
+    public BookingRequest() {
     }
 
-    public BookingRequest(Integer showtimeId, String customerPhone, List<BookedSeatRequest> bookedSeats){
+    public BookingRequest(Integer showtimeId, String customerPhone, List<BookedSeatRequest> bookedSeats) {
         this.showtimeId = showtimeId;
         this.customerPhone = customerPhone;
         this.bookedSeats = bookedSeats;

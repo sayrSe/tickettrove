@@ -13,24 +13,25 @@ import java.util.List;
 @RequestMapping("/otp")
 public class OtpController {
     private final OtpService otpService;
+
     @Autowired
-    public OtpController(OtpService otpService){
+    public OtpController(OtpService otpService) {
         this.otpService = otpService;
     }
 
     @PostMapping(params = {"phoneNumber"})
     @ResponseStatus(HttpStatus.CREATED)
-    public void generateOtpCode(@RequestParam String phoneNumber){
+    public void generateOtpCode(@RequestParam String phoneNumber) {
         otpService.generateOtpCode(phoneNumber);
     }
 
-    @GetMapping(value="/verify", params={"phoneNumber", "code"})
-    public OtpVerifyResponse verifyCode(@RequestParam String phoneNumber, @RequestParam String code){
+    @GetMapping(value = "/verify", params = {"phoneNumber", "code"})
+    public OtpVerifyResponse verifyCode(@RequestParam String phoneNumber, @RequestParam String code) {
         return otpService.verifyCode(phoneNumber, code);
     }
 
     @GetMapping
-    public List<OtpResponse> getOtpResponses(){
+    public List<OtpResponse> getOtpResponses() {
         return otpService.getOtpResponses();
     }
 }

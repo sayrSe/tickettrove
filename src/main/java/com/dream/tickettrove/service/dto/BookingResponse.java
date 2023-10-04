@@ -1,6 +1,5 @@
 package com.dream.tickettrove.service.dto;
 
-import java.util.Date;
 import java.util.List;
 
 public class BookingResponse {

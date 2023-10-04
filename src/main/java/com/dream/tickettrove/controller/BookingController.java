@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 public class BookingController {
     public final BookingService bookingService;
 
-    public BookingController(BookingService bookingService){
+    public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createBooking(@RequestBody BookingRequest bookingRequest){
+    public void createBooking(@RequestBody BookingRequest bookingRequest) {
         bookingService.createBooking(bookingRequest);
     }
 
     @GetMapping("/{referenceNumber}")
-    public BookingResponse getBookingByReference(@PathVariable String referenceNumber){
+    public BookingResponse getBookingByReference(@PathVariable String referenceNumber) {
         return bookingService.getByReference(referenceNumber);
     }
 }

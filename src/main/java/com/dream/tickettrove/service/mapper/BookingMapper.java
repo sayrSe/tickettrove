@@ -26,6 +26,10 @@ public class BookingMapper {
         return booking;
     }
 
+    private BookingMapper() {
+        // Empty Constructor
+    }
+
     public static BookedSeat toResponse(BookedSeatRequest bookedSeatRequest, Integer bookingId){
         BookedSeat bookedSeat = new BookedSeat();
         BeanUtils.copyProperties(bookedSeatRequest, bookedSeat);

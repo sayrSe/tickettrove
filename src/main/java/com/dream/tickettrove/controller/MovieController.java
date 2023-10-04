@@ -1,7 +1,6 @@
 package com.dream.tickettrove.controller;
 
 import com.dream.tickettrove.model.Cinema;
-import com.dream.tickettrove.model.Showtime;
 import com.dream.tickettrove.service.MovieService;
 import com.dream.tickettrove.service.dto.MovieResponse;
 import com.dream.tickettrove.service.dto.ShowtimeResponse;
@@ -31,8 +30,8 @@ public class MovieController {
 
     @GetMapping(value = "/{id}/showtimes", params = {"cinemaId", "date"})
     public List<ShowtimeResponse> getShowtimesByMovieCinemaDate(@PathVariable Integer id,
-                                                        @RequestParam Long cinemaId,
-                                                        @RequestParam String date) {
+                                                                @RequestParam Long cinemaId,
+                                                                @RequestParam String date) {
         return movieService.getShowtimesByMovieCinemaDate(id, cinemaId, date);
     }
 

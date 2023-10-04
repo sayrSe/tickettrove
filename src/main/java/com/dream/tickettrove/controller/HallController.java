@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HallController {
     public final HallService hallService;
 
-    public HallController(HallService hallService){
+    public HallController(HallService hallService) {
         this.hallService = hallService;
     }
 
     @GetMapping("/showtimes/{showtimeId}/halls")
-    public HallResponse getHallLayout(@PathVariable Integer showtimeId){
+    public HallResponse getHallLayout(@PathVariable Integer showtimeId) {
         return hallService.getHallLayout(showtimeId);
     }
 }

@@ -14,7 +14,7 @@ public class Cinema {
     private String address;
 
     public Cinema() {
-
+        // Empty Constructor
     }
 
     public Cinema(Long id, String name, String address){

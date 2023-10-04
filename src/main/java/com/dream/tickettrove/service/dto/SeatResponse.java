@@ -1,9 +1,5 @@
 package com.dream.tickettrove.service.dto;
 
-import com.dream.tickettrove.model.ShowtimeSeat;
-
-import java.util.List;
-
 public class SeatResponse {
 
     private Integer id;

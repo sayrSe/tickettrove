@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 public class MovieMapper {
 
     private MovieMapper() {
+        // Empty Constructor
     }
 
     public static MovieResponse toResponse(Movie movie) {

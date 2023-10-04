@@ -3,7 +3,6 @@ package com.dream.tickettrove.service;
 import com.dream.tickettrove.exception.SeatsNotFoundException;
 import com.dream.tickettrove.model.Hall;
 import com.dream.tickettrove.model.Seat;
-import com.dream.tickettrove.model.Showtime;
 import com.dream.tickettrove.model.ShowtimeSeat;
 import com.dream.tickettrove.repository.HallRepository;
 import com.dream.tickettrove.repository.SeatRepository;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class HallService {
@@ -26,14 +24,14 @@ public class HallService {
     private final SeatRepository seatRepository;
     private final ShowtimeRepository showtimeRepository;
 
-    public HallService(HallRepository hallRepository, ShowtimeSeatRepository showtimeSeatRepository, SeatRepository seatRepository, ShowtimeRepository showtimeRepository){
+    public HallService(HallRepository hallRepository, ShowtimeSeatRepository showtimeSeatRepository, SeatRepository seatRepository, ShowtimeRepository showtimeRepository) {
         this.hallRepository = hallRepository;
         this.showtimeSeatRepository = showtimeSeatRepository;
         this.seatRepository = seatRepository;
         this.showtimeRepository = showtimeRepository;
     }
 
-    public HallResponse getHallLayout(Integer showtimeId){
+    public HallResponse getHallLayout(Integer showtimeId) {
         Integer hallId = showtimeRepository.findById(showtimeId)
                 .orElseThrow(SeatsNotFoundException::new)
                 .getHallId();
@@ -52,10 +50,10 @@ public class HallService {
         List<SeatResponse> seatResponses = new ArrayList<>();
         int showtimeSeatIndex = 0;
         for (Seat seat : seats) {
-            if (seat.getAvailable()) {
+            if (Boolean.TRUE.equals(seat.getAvailable())) {
                 seatResponses.add(SeatMapper.toResponse(seat, showtimeSeats.get(showtimeSeatIndex++)));
-                if(showtimeSeatIndex == showtimeSeats.size()) break;
-            }else{
+                if (showtimeSeatIndex == showtimeSeats.size()) break;
+            } else {
                 seatResponses.add(SeatMapper.toResponse(seat));
             }
         }

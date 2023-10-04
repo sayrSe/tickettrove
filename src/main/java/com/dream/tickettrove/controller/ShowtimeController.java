@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShowtimeController {
 
     private final ShowtimeService showtimeService;
+
     @Autowired
-    public ShowtimeController(ShowtimeService showtimeService){
+    public ShowtimeController(ShowtimeService showtimeService) {
         this.showtimeService = showtimeService;
     }
 
     @GetMapping("/{id}")
-    public Showtime getShowtimeById(@PathVariable Integer id){
+    public Showtime getShowtimeById(@PathVariable Integer id) {
         return showtimeService.getById(id);
     }
 }

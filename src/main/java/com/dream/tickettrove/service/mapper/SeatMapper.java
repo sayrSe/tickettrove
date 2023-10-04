@@ -5,9 +5,12 @@ import com.dream.tickettrove.model.ShowtimeSeat;
 import com.dream.tickettrove.service.dto.SeatResponse;
 import org.springframework.beans.BeanUtils;
 
-import java.util.List;
-
 public class SeatMapper {
+
+    private SeatMapper() {
+        // Empty Constructor
+    }
+
     public static SeatResponse toResponse(Seat seat, ShowtimeSeat showtimeSeat) {
         SeatResponse seatResponse = new SeatResponse();
         BeanUtils.copyProperties(showtimeSeat, seatResponse);

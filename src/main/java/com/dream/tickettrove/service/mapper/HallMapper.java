@@ -6,6 +6,10 @@ import org.springframework.beans.BeanUtils;
 
 public class HallMapper {
 
+    private HallMapper() {
+        // Empty Constructor
+    }
+
     public static HallResponse toResponse(Hall hall){
         HallResponse hallResponse = new HallResponse();
         BeanUtils.copyProperties(hall, hallResponse);

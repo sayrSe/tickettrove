@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HallApiTest {
+class HallApiTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -41,7 +41,7 @@ public class HallApiTest {
     }
 
     @Test
-    public void should_return_hallResponse_when_get_given_showtimeId() throws Exception{
+    void should_return_hallResponse_when_get_given_showtimeId() throws Exception{
         Hall hall = hallRepository.save(new Hall(1, 10, 2, 3));
         Showtime newShowtime = new Showtime();
         newShowtime.setHallId(1);

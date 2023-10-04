@@ -23,6 +23,7 @@ public class Movie {
     private List<Showtime> showtimes;
 
     public Movie() {
+        // Empty Constructor
     }
 
     public Integer getId() {

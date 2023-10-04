@@ -16,6 +16,7 @@ public class Hall {
     private Integer maxCol;
 
     public Hall(){
+        // Empty Constructor
     }
 
     public Hall(Integer cinemaId, Integer hallNumber, Integer maxRow, Integer maxCol){

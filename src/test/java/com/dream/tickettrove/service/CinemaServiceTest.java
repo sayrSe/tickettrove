@@ -16,7 +16,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-public class CinemaServiceTest {
+class CinemaServiceTest {
     @InjectMocks
     private CinemaService cinemaService;
     @Mock
